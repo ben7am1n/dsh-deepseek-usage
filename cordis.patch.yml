@@ -1,0 +1,16 @@
+# dsh-deepseek-usage bundle patch: mounts the plugin into a dsh profile
+# composition. The plugin registers `deepseek_balance` and `usage_summary`
+# tools into the shared `tools` registry.
+#
+# Install: `dsh plugin --profile <name> add dsh-deepseek-usage`
+- insert:
+    - id: deepseek-usage
+      name: dsh-deepseek-usage
+      config:
+        # Env var or credential reference holding the DeepSeek API key.
+        apiKeyEnv: DEEPSEEK_API_KEY
+        # DeepSeek API base URL (the balance endpoint is GET /user/balance).
+        baseURL: https://api.deepseek.com
+        # Optional: warn inside tool output when total balance is below this
+        # amount (in the account's primary currency). Omit to disable.
+        # lowBalanceThreshold: 20
